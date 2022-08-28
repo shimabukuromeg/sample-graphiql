@@ -3,8 +3,8 @@ import {
   GraphiQLPlugin,
 } from '@graphiql/react';
 import { GraphiQL } from 'graphiql';
-import { ExplorerPlugin } from './graphiql-plugin/ExplorerPlugin';
-import { QueryContext } from './graphiql-plugin/QueryContext';
+import { ExplorerPlugin } from './graphiql-plugin/explorer/ExplorerPlugin';
+import { QueryContext } from './graphiql-plugin/explorer/QueryContext';
 
 import 'graphiql/graphiql.css';
 import {
