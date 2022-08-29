@@ -41,8 +41,8 @@ const explorerPlugin: GraphiQLPlugin = {
 };
 
 
-const explorerPluginTwo: GraphiQLPlugin = {
-  title: 'GraphiQL Explorer 1',
+const explorerPluginExample: GraphiQLPlugin = {
+  title: 'GraphiQL Explorer Example',
   icon: () => (
     <svg height="1em" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
       <path
@@ -78,14 +78,6 @@ const fetcher = createGraphiQLFetcher({
 
 function GraphiQLApp() {
   const [query, setQuery] = useState<string>('');
-  const [token, setToken] = useState(import.meta.env.VITE_API_KEY);
-  const headers = {
-    'Authorization': (!!token ?`Bearer ${token}`: undefined),
-    'apikey': token,
-  };
-
-  console.log('query', query);
-  
 
   return (
     <QueryContext.Provider
@@ -95,9 +87,7 @@ function GraphiQLApp() {
         fetcher={fetcher}
         query={query}
         onEditQuery={newQuery => setQuery(newQuery)}
-        // plugins={[explorerPlugin, explorerPluginTwo]}
-        isHeadersEditorEnabled={true}
-        headers={JSON.stringify(headers, null, 2)}
+        plugins={[explorerPlugin, explorerPluginExample]}
       >
         <GraphiQL.Logo>サンプル GraphiQL</GraphiQL.Logo>
         <GraphiQL.Toolbar>
@@ -113,14 +103,6 @@ function GraphiQLApp() {
               onClick={() => window.alert('さようなら！')}
               style={{ backgroundColor: "blue", color: "white", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", marginBottom: "10px" }}
             >B</ToolbarButton>
-            <ToolbarButton
-              label="ボタンT"
-              onClick={() => {
-                window.alert('トークンをセットしました')
-                setToken(import.meta.env.VITE_API_KEY)
-              }}
-              style={{ backgroundColor: "green", color: "white", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", marginBottom: "10px" }}
-            >T</ToolbarButton>
           </div>
         </GraphiQL.Toolbar>
       </GraphiQL>
